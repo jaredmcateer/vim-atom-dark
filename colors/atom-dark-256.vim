@@ -14,6 +14,7 @@ else
     command! -nargs=+ CSAHi exe "hi" <q-args>
 endif
 
+" Old KDE Konsole check {{{
 function! s:old_kde()
   " Konsole only used its own palette up til KDE 4.2.0
   if executable('kde4-config') && system('kde4-config --kde-version') =~ '^4.[10].'
@@ -24,8 +25,10 @@ function! s:old_kde()
     return 0
   endif
 endfunction
+" }}}
 
 if 0
+" KDE Konsole {{{
 elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^screen") && exists("g:CSApprox_konsole") && g:CSApprox_konsole) || (&term =~? "^konsole" && s:old_kde())
     CSAHi Normal term=NONE cterm=NONE ctermbg=234 ctermfg=231 gui=NONE guibg=#1D1F21 guifg=#F8F8F2
     CSAHi vimFiletype term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
@@ -346,6 +349,8 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi Conceal term=NONE cterm=NONE ctermbg=248 ctermfg=252 gui=NONE guibg=DarkGrey guifg=LightGrey
     CSAHi SpellBad term=reverse cterm=undercurl ctermbg=bg ctermfg=196 gui=undercurl guibg=bg guifg=fg guisp=#FF0000
     CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=105 gui=undercurl guibg=bg guifg=fg guisp=#7070F0
+"}}}
+" Eterm {{{
 elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^screen") && exists("g:CSApprox_eterm") && g:CSApprox_eterm) || &term =~? "^eterm"
     CSAHi Normal term=NONE cterm=NONE ctermbg=234 ctermfg=255 gui=NONE guibg=#1D1F21 guifg=#F8F8F2
     CSAHi vimFiletype term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
@@ -666,6 +671,8 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi Conceal term=NONE cterm=NONE ctermbg=248 ctermfg=231 gui=NONE guibg=DarkGrey guifg=LightGrey
     CSAHi SpellBad term=reverse cterm=undercurl ctermbg=bg ctermfg=196 gui=undercurl guibg=bg guifg=fg guisp=#FF0000
     CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=147 gui=undercurl guibg=bg guifg=fg guisp=#7070F0
+"}}}
+" 256 Color Term {{{
 elseif has("gui_running") || &t_Co == 256
     CSAHi Normal term=NONE cterm=NONE ctermbg=234 ctermfg=231 gui=NONE guibg=#1D1F21 guifg=#F8F8F2
     CSAHi vimFiletype term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
@@ -739,7 +746,7 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi vimSynMatchRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
     CSAHi vimSynMtchCchar term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
     CSAHi vimSynMtchGroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
-    CSAHi ColorColumn term=reverse cterm=NONE ctermbg=252 ctermfg=fg gui=NONE guibg=lightgray guifg=fg
+    CSAHi ColorColumn term=reverse cterm=NONE ctermbg=232 ctermfg=fg gui=NONE guibg=lightgray guifg=fg
     CSAHi MatchParen term=reverse cterm=NONE ctermbg=238 ctermfg=145 gui=NONE guibg=#444444 guifg=#B7B9B8
     CSAHi Comment term=bold cterm=NONE ctermbg=bg ctermfg=244 gui=NONE guibg=bg guifg=#7C7C7C
     CSAHi Constant term=underline cterm=NONE ctermbg=bg ctermfg=114 gui=NONE guibg=bg guifg=#99CC99
@@ -983,9 +990,11 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi DiffDelete term=bold cterm=bold ctermbg=16 ctermfg=89 gui=bold guibg=#1E0010 guifg=#960050
     CSAHi DiffText term=reverse cterm=NONE ctermbg=59 ctermfg=fg gui=NONE guibg=#4C4745 guifg=fg
     CSAHi SignColumn term=NONE cterm=NONE ctermbg=235 ctermfg=186 gui=NONE guibg=#232526 guifg=#DAD085
-    CSAHi Conceal term=NONE cterm=NONE ctermbg=248 ctermfg=252 gui=NONE guibg=DarkGrey guifg=LightGrey
+    CSAHi Conceal term=NONE cterm=NONE ctermbg=NONE ctermfg=202 gui=NONE guibg=DarkGrey guifg=LightGrey
     CSAHi SpellBad term=reverse cterm=undercurl ctermbg=bg ctermfg=196 gui=undercurl guibg=bg guifg=fg guisp=#FF0000
     CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=63 gui=undercurl guibg=bg guifg=fg guisp=#7070F0
+"}}}
+" 88 Color Term {{{
 elseif has("gui_running") || &t_Co == 88
     CSAHi Normal term=NONE cterm=NONE ctermbg=80 ctermfg=79 gui=NONE guibg=#1D1F21 guifg=#F8F8F2
     CSAHi vimFiletype term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
